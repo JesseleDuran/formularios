@@ -1,0 +1,73 @@
+<modification>
+	<id>Remove all download links from front and back end</id>
+    <version>1.0.0</version>
+    <vqmver>2.5.1</vqmver>
+    <author>Jessele Durán</author>
+
+<file name="catalog/view/theme/*/template/common/header.tpl">
+        <operation>
+            <search position="replace" error="log"><![CDATA[<li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>]]></search>
+            <add><![CDATA[<!--<li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>-->]]></add>
+        </operation>
+    </file>
+<file name="catalog/view/theme/*/template/account/account.tpl">
+        <operation>
+            <search position="replace" error="log"><![CDATA[<li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>]]></search>
+            <add><![CDATA[<!--<li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>-->]]></add>
+        </operation>
+    </file>
+<file name="catalog/view/theme/*/template/module/account.tpl">
+        <operation>
+            <search position="replace" error="log"><![CDATA[<a href="<?php echo $download; ?>" class="list-group-item"><?php echo]]></search>
+            <add><![CDATA[<!--<a href="<?php echo $download; ?>" class="list-group-item"><?php echo]]></add>
+        </operation>
+       <operation>
+            <search position="replace" error="log"><![CDATA[$text_download; ?>]]></search>
+            <add><![CDATA[$text_download; ?>-->]]></add>
+        </operation>
+    </file>
+<file name="catalog/controller/account/download.php">
+        <operation>
+            <search position="before" error="log"><![CDATA[if (!$this->customer->isLogged()) {]]></search>
+            <add><![CDATA[$this->response->redirect($this->url->link('account/account', '', 'SSL'));]]></add>
+        </operation>
+</file>
+<file name="admin/view/template/common/menu.tpl">
+        <operation>
+            <search position="replace" error="log"><![CDATA[<li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>]]></search>
+            <add><![CDATA[<!--<li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>-->]]></add>
+        </operation>
+</file>
+<file name="admin/view/template/catalog/product_form.tpl">
+        <operation>
+            <search position="before" error="log" offset="5"><![CDATA[<div id="product-download" class="well well-sm" style="height: 150px; overflow: auto;">]]></search>
+            <add><![CDATA[<!--<div id="product-download" class="well well-sm" style="height: 150px; overflow: auto;">]]></add>
+        </operation>
+        <operation>
+            <search position="after" error="log" offset="9"><![CDATA[<div id="product-download" class="well well-sm" style="height: 150px; overflow: auto;">]]></search>
+            <add><![CDATA[<div id="product-download" class="well well-sm" style="height: 150px; overflow: auto;">-->]]></add>
+        </operation>
+</file>
+<file name="catalog/view/theme/*/template/information/sitemap.tpl">
+        <operation>
+            <search position="replace" error="log"><![CDATA[<li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>]]></search>
+            <add><![CDATA[<!--<li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>-->]]></add>
+        </operation>
+</file>
+<file name="catalog/language/english/checkout/success.php">
+        <operation>
+            <search position="replace" error="log"><![CDATA[<p>If your purchase has an associated download, you can go to the account <a href="%s">downloads</a> page to view them.</p>]]></search>
+            <add><![CDATA[<!--<p>If your purchase has an associated download, you can go to the account <a href="%s">downloads</a> page to view them.</p>-->]]></add>
+        </operation>
+</file>
+</modification>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+   <id>Remove Reward Points Links from Opencart</id>
+   <version>1.0</version>
+   <vqmver>2.5.1</vqmver>
+   <author>Jessele Durán</author>
+   
+   <file path="catalog/controller/" name="module/account.php,account/account.php,common/header.php,information/sitemap.php">
+       <operation error="skip">
+           <search position="replace"><![CDATA[
+		   $data['text_reward'] = $this->language->get('text_reward');
+           ]]></search>
+           <add><![CDATA[
+           ]]></add>
+       </operation>
+       <operation error="skip">
+           <search position="replace"><![CDATA[
+		   $data['reward'] = $this->url->link('account/reward', '', 'SSL');
+           ]]></search>
+           <add><![CDATA[
+           ]]></add>
+       </operation>
+   </file>
+   
+    <file path="catalog/view/theme/*/template/" name="module/account.tpl">
+       <operation error="skip">
+           <search position="replace"><![CDATA[
+		   <a href="<?php echo $reward; ?>" class="list-group-item"><?php echo $text_reward; ?></a> 
+           ]]></search>
+           <add><![CDATA[
+           ]]></add>
+       </operation>
+   </file>
+   
+    <file path="catalog/view/theme/*/template/" name="account/account.tpl,common/header.tpl,information/sitemap.tpl">
+       <operation error="skip">
+           <search position="replace" offset="2"><![CDATA[
+		   <?php if ($reward) { ?>
+		]]></search>
+           <add><![CDATA[
+           ]]></add>
+       </operation>
+   </file>
+  
+</modification>
